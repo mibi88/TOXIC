@@ -1,9 +1,10 @@
 import discord
 import random
+import unicodedata
 
-TOKEN = "MTEwMDA0MDU2MjUxOTg0Mjg4Nw.GqCQHi.bEwMB2qGnIfgg4j5Urx6tLKk9Wnc91FbZnd-h8"
+TOKEN = "token"
 
-intents = discord.Intents.default()  
+intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents = intents)
 
@@ -23,6 +24,7 @@ async def on_message(message):
     s = message.content
     o = ""
     for w in s.split(' '):
+        w = str(unicodedata.normalize('NFD', w).encode('ascii', 'ignore').decode("utf-8"))
         p = []
         f = 0
         for i in data:
